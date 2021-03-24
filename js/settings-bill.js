@@ -55,9 +55,9 @@ smsAndCallSecttings.addEventListener('click', function(){
         console.log(typeof overallTotal)
 
         if (overallTotal >= parseInt(costWarning)){
-            totalSettings.classList.add("danger")
-        } else if (overallTotal >= parseInt(critialCost)){
-            totalSettings.classList.add('warning')
+            totalSettings.classList.add("warning")
+        } if (overallTotal < parseInt(costWarning) && overallTotal >= parseInt(critialCost)){
+            totalSettings.classList.add('danger')
         }
     }
 })
