@@ -41,12 +41,12 @@ smsAndCallSecttings.addEventListener('click', function(){
     if (checkedRadioBtn){
         
         if (checkedRadioBtn.value === 'callSet'){
-            if (overallTotal <= parseInt(critialCost)){
+            if ((overallTotal + parseInt(costOfCall)) <= parseInt(critialCost)){
                 totalCall += parseInt(costOfCall)
                 overallTotal += parseInt(costOfCall)
             }
         } else if (checkedRadioBtn.value === 'smsSet'){
-            if (overallTotal <= parseInt(critialCost)){
+            if ((overallTotal + parseInt(costOfSMS)) <= parseInt(critialCost)){
                 totalSms += parseInt(costOfSMS)
                 overallTotal += parseInt(costOfSMS)
             }
