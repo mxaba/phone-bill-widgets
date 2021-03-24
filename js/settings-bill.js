@@ -27,7 +27,6 @@ updateSettings.addEventListener('click', function(){
     costOfSMS = smsCostSettings.value
     critialCost = criticalLevelSetting.value
     costWarning = warningLevelSetting.value
-    
 })
 
 // function radioBillSettingTotal
@@ -42,22 +41,22 @@ smsAndCallSecttings.addEventListener('click', function(){
     if (checkedRadioBtn){
         
         if (checkedRadioBtn.value === 'callSet'){
-            totalCall += costOfCall
-            overallTotal += costOfCall
-            console.log(costOfCall)
-            console.log(overallTotal)
+            totalCall += parseInt(costOfCall)
+            overallTotal += parseInt(costOfCall)
+            
         } else if (checkedRadioBtn.value === 'smsSet'){
-            totalSms += costOfSMS
-            overallTotal += costOfSMS
+            totalSms += parseInt(costOfSMS)
+            overallTotal += parseInt(costOfSMS)
         }
         //update the totals
         callTotalSettings.innerHTML = totalCall
         smsTotalSettings.innerHTML = totalSms
         totalSettings.innerHTML = 'R' + overallTotal
+        console.log(typeof overallTotal)
 
-        if (overallTotal >= costWarning){
+        if (overallTotal >= parseInt(costWarning)){
             totalSettings.classList.add("danger")
-        } else if (overallTotal >= critialCost){
+        } else if (overallTotal >= parseInt(critialCost)){
             totalSettings.classList.add('warning')
         }
     }
