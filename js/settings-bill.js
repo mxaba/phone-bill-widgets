@@ -41,23 +41,33 @@ smsAndCallSecttings.addEventListener('click', function(){
     if (checkedRadioBtn){
         
         if (checkedRadioBtn.value === 'callSet'){
-            totalCall += parseInt(costOfCall)
-            overallTotal += parseInt(costOfCall)
-            
+            if (overallTotal <= parseInt(critialCost)){
+                totalCall += parseInt(costOfCall)
+                overallTotal += parseInt(costOfCall)
+            }
         } else if (checkedRadioBtn.value === 'smsSet'){
-            totalSms += parseInt(costOfSMS)
-            overallTotal += parseInt(costOfSMS)
+            if (overallTotal <= parseInt(critialCost)){
+                totalSms += parseInt(costOfSMS)
+                overallTotal += parseInt(costOfSMS)
+            }
         }
+        console.log(overallTotal)
         //update the totals
+        // if ((totalCall + totalSms) <= parseInt(critialCost)){
         callTotalSettings.innerHTML = totalCall
         smsTotalSettings.innerHTML = totalSms
         totalSettings.innerHTML = 'R' + overallTotal
-        console.log(typeof overallTotal)
+        // }
+        // console.log(typeof overallTotal)
 
-        if (overallTotal >= parseInt(costWarning)){
-            totalSettings.classList.add("warning")
-        } if (overallTotal < parseInt(costWarning) && overallTotal >= parseInt(critialCost)){
-            totalSettings.classList.add('danger')
+        if (overallTotal >= parseInt(costWarning) && overallTotal < parseInt(critialCost)){
+            if (totalSettings.classList.contains('danger')){
+                totalSettings.classList.remove('danger')
+            } totalSettings.classList.add("warning")
+        } else if (overallTotal >= parseInt(critialCost)){
+            if (totalSettings.classList.contains('warning')){
+                totalSettings.classList.remove('warning')
+            } totalSettings.classList.add('danger')
         }
     }
 })
