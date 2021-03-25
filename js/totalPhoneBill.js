@@ -1,5 +1,5 @@
 function totalPhoneBill(string){
-    var array = string.split(", ")
+    var array = string.split(",")
     var calls = 0
     var sms = 0
     for (var i=0; i<array.length;i++){

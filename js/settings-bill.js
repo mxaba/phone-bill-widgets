@@ -27,6 +27,23 @@ updateSettings.addEventListener('click', function(){
     costOfSMS = smsCostSettings.value
     critialCost = criticalLevelSetting.value
     costWarning = warningLevelSetting.value
+    console.log(parseFloat(costOfCall))
+
+    if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
+        if (totalSettings.classList.contains('danger')){
+            totalSettings.classList.remove('danger')
+        } totalSettings.classList.add("warning")
+    } else if (overallTotal >= parseFloat(critialCost)){
+        if (totalSettings.classList.contains('warning')){
+            totalSettings.classList.remove('warning')
+        } totalSettings.classList.add('danger')
+    } 
+    else if (overallTotal < parseFloat(costWarning)){
+        if (totalSettings.classList.contains('warning' || 'danger')){
+            totalSettings.classList.remove('warning', 'danger')
+        } 
+        
+    }
 })
 
 // function radioBillSettingTotal
@@ -41,30 +58,30 @@ smsAndCallSecttings.addEventListener('click', function(){
     if (checkedRadioBtn){
         
         if (checkedRadioBtn.value === 'callSet'){
-            if ((overallTotal + parseInt(costOfCall)) <= parseInt(critialCost)){
-                totalCall += parseInt(costOfCall)
-                overallTotal += parseInt(costOfCall)
+            if ((overallTotal + parseFloat(costOfCall)) <= parseFloat(critialCost)){
+                totalCall += parseFloat(costOfCall)
+                overallTotal += parseFloat(costOfCall)
             }
         } if (checkedRadioBtn.value === 'smsSet'){
-            if ((overallTotal + parseInt(costOfSMS)) <= parseInt(critialCost)){
-                totalSms += parseInt(costOfSMS)
-                overallTotal += parseInt(costOfSMS)
+            if ((overallTotal + parseFloat(costOfSMS)) <= parseFloat(critialCost)){
+                totalSms += parseFloat(costOfSMS)
+                overallTotal += parseFloat(costOfSMS)
             }
         }
         console.log(overallTotal)
         //update the totals
-        // if ((totalCall + totalSms) <= parseInt(critialCost)){
-        callTotalSettings.innerHTML = totalCall
-        smsTotalSettings.innerHTML = totalSms
-        totalSettings.innerHTML = 'R' + overallTotal
+        // if ((totalCall + totalSms) <= parseFloat(critialCost)){
+        callTotalSettings.innerHTML = totalCall.toFixed(2)
+        smsTotalSettings.innerHTML = totalSms.toFixed(2)
+        totalSettings.innerHTML = 'R' + overallTotal.toFixed(2)
         // }
         // console.log(typeof overallTotal)
 
-        if (overallTotal >= parseInt(costWarning) && overallTotal < parseInt(critialCost)){
+        if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
             if (totalSettings.classList.contains('danger')){
                 totalSettings.classList.remove('danger')
             } totalSettings.classList.add("warning")
-        } else if (overallTotal >= parseInt(critialCost)){
+        } else if (overallTotal >= parseFloat(critialCost)){
             if (totalSettings.classList.contains('warning')){
                 totalSettings.classList.remove('warning')
             } totalSettings.classList.add('danger')
