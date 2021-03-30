@@ -35,6 +35,10 @@ describe('SettingsBillLogic Function', function(){
         settingBill.getCriticalCost('20')
         settingBill.getWarningCost('10')
         settingBill.settingsCalculation('Anything beside those two key words used')
+        settingBill.settingsCalculation('Words anything')
+        settingBill.settingsCalculation('Anything')
+        settingBill.settingsCalculation('You just have to relax')
+        settingBill.settingsCalculation('   ')
 
         assert.equal(0, settingBill.getTotal())
     })
@@ -59,6 +63,5 @@ describe('SettingsBillLogic Function', function(){
         settingBill.settingsCalculation('sms')
 
         assert.equal(30, settingBill.getTotal())
-        // assert.equal('This is over the critical value', settingBill.getTotal())
     })
 })
