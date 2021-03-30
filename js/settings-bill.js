@@ -69,13 +69,9 @@ smsAndCallSecttings.addEventListener('click', function(){
             }
         }
         console.log(overallTotal)
-        //update the totals
-        // if ((totalCall + totalSms) <= parseFloat(critialCost)){
         callTotalSettings.innerHTML = totalCall.toFixed(2)
         smsTotalSettings.innerHTML = totalSms.toFixed(2)
         totalSettings.innerHTML = 'R' + overallTotal.toFixed(2)
-        // }
-        // console.log(typeof overallTotal)
 
         if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
             if (totalSettings.classList.contains('danger')){
