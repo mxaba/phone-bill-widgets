@@ -65,7 +65,7 @@ describe('SettingsBillLogic Function', function(){
         assert.equal(30, settingBill.getTotal())
     })
 
-    it('This should return the total of the calculated on values and even the clase now its goinf to be WARNING', function(){
+    it('should return the total of the calculated on values and even the clase now its goinf to be WARNING', function(){
         var settingBill = seetingBillLogic()
         settingBill.getCallCost('5')
         settingBill.getSmsCost('2')
@@ -86,7 +86,7 @@ describe('SettingsBillLogic Function', function(){
         assert.equal('warning', settingBill.addClass())
     })
 
-    it('should not continue counting or adding if the total is beyond the critical value and you should also display the type of the class now it should be DANGER', function(){
+    it('Should not continue counting or adding if the total is beyond the critical value and you should also display the type of the class now it should be DANGER', function(){
         var settingBill = seetingBillLogic()
         settingBill.getCallCost('5')
         settingBill.getSmsCost('2')

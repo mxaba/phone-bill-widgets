@@ -1,15 +1,15 @@
 
 
 describe('RadioBillLogic Function', function(){
-    it('The function should return the correct total cost of the calculated bill of sms', function(){
+    it('Should return the correct total cost of the calculated bill of sms', function(){
         var radio = radioBillLogic() //get the factoory function
         radio.calculate('sms')
         assert.equal(0.65, radio.getTotals().sms)
-    }); it('The function should return the correct total cost of the calculated bill of call', function(){
+    }); it('Should return the correct total cost of the calculated bill of call', function(){
         var radio = radioBillLogic() //get the factoory function
         radio.calculate('call')
         assert.equal(2.75, radio.getTotals().totalOfSmsCall)
-    }); it('The function should return the correct sum of the entered bills', function(){
+    }); it('Should return the correct sum of the entered bills', function(){
         var radio = radioBillLogic() //get the factoory function
         radio.calculate('sms')
         radio.calculate('call')
@@ -21,7 +21,7 @@ describe('RadioBillLogic Function', function(){
         assert.equal(2.60, radio.getTotals().sms)
         assert.equal(8.25, radio.getTotals().call)
         assert.equal(10.85, radio.getTotals().totalOfSmsCall)
-    }); it('The function should return the correct sum of the entered bills, it should ignore anything that is not call or sms', function(){
+    }); it('Should ignore anything that is not call or sms', function(){
         var radio = radioBillLogic() //get the factoory function
         radio.calculate('sms')
         radio.calculate('call')

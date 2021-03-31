@@ -39,7 +39,6 @@ function addClass(){
        }
 }
 
-
     //function to calculate the cost of call or sms bill given according to the update
     function settingsCalculation(checkedRadioSet){
         if (checkedRadioSet === 'call'){
@@ -50,7 +49,6 @@ function addClass(){
             } else{
                 console.log('This is over the critical value')
                 warningMes = 'This is over the critical value'
-                // return warningMes
             }
         } if (checkedRadioSet === 'sms'){ //I am stoping it not to add if the overal total is beyonf the critital value
             if ((overallTotal + parseFloat(billObjectSms)) <= billObjecCritical){
@@ -60,7 +58,6 @@ function addClass(){
             } else{
                 console.log('This is over the critical value')
                 warningMes = 'This is over the critical value'
-                // return warningMes
             }
         }
     }

@@ -1,9 +1,9 @@
 describe('CalculateBill Function', function(){
-    it('It should return the total amount of the bill after calculating the amount of call and sms that is passed on the argument string', function(){
+    it('Should return the total amount of the bill after calculating the amount of call and sms that is passed on the argument string', function(){
         assert.equal(2.75, calculateBill('call').total)
     })
 
-    it('It should return the total amount of the bill after calculating the amount of call and sms that is passed on the argument string', function(){
+    it('Should return the total amount of the bill after calculating the amount of call and sms that is passed on the argument string', function(){
         assert.equal(8.90, calculateBill('call, sms, call, call').total)
     })
 
