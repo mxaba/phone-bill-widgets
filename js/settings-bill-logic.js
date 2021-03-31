@@ -30,6 +30,16 @@ var seetingBillLogic = function(){
         console.log('SetCritical: ' + billObjecCritical)
     }
 
+function addClass(){
+    if(criticalLevel()){
+        return "danger"
+       }
+       if(warningLevel()){
+           return "warning"
+       }
+}
+
+
     //function to calculate the cost of call or sms bill given according to the update
     function settingsCalculation(checkedRadioSet){
         if (checkedRadioSet === 'call'){
@@ -54,6 +64,16 @@ var seetingBillLogic = function(){
             }
         }
     }
+
+
+function criticalLevel(){
+ return overallTotal >= billObjecCritical
+}
+
+function warningLevel(){
+  return  overallTotal >= billObjectWarning && overallTotal < billObjecCritical
+}
+    
 
     //Functions to return the values 
     var getCostSmsTotal = function(){
@@ -82,6 +102,7 @@ var seetingBillLogic = function(){
         getCostSmsTotal: getCostSmsTotal,
         getTotal: getTotal,
         getWarningVlue: getWarningVlue,
-        getCriticalVlue: getCriticalVlue
+        getCriticalVlue: getCriticalVlue,
+        addClass
     }
 }

@@ -64,4 +64,48 @@ describe('SettingsBillLogic Function', function(){
 
         assert.equal(30, settingBill.getTotal())
     })
+
+    it('This should return the total of the calculated on values and even the clase now its goinf to be WARNING', function(){
+        var settingBill = seetingBillLogic()
+        settingBill.getCallCost('5')
+        settingBill.getSmsCost('2')
+        settingBill.getCriticalCost('30')
+        settingBill.getWarningCost('14')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+
+        assert.equal(18, settingBill.getTotal())
+
+        assert.equal('warning', settingBill.addClass())
+    })
+
+    it('should not continue counting or adding if the total is beyond the critical value and you should also display the type of the class now it should be DANGER', function(){
+        var settingBill = seetingBillLogic()
+        settingBill.getCallCost('5')
+        settingBill.getSmsCost('2')
+        settingBill.getCriticalCost('30')
+        settingBill.getWarningCost('25')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('call')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+        settingBill.settingsCalculation('sms')
+
+        assert.equal(30, settingBill.getTotal())
+        assert.equal('danger', settingBill.addClass())
+    })
 })
