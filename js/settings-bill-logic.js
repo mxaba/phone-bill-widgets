@@ -14,20 +14,16 @@ var seetingBillLogic = function(){
     //Functions to getll all the update settings and it will set it to the billObject
     var getCallCost = function(callTotalSettings){
         billObjectCall = parseFloat(callTotalSettings).toFixed(2)
-        console.log('SetCall: ' + billObjectCall)
         
     }
     var getSmsCost = function(smsTotalSettings){
         billObjectSms = parseFloat(smsTotalSettings).toFixed(2)
-        console.log('SetSms: ' + billObjectSms)
     }
     var getWarningCost = function(warningLevelSetting){
         billObjectWarning = parseFloat(warningLevelSetting).toFixed(2)
-        console.log('SetWarning: ' + billObjectWarning)
     }
     var getCriticalCost = function(CritialCostSetting){
         billObjecCritical = parseFloat(CritialCostSetting).toFixed(2)
-        console.log('SetCritical: ' + billObjecCritical)
     }
 
 function addClass(){
@@ -41,25 +37,26 @@ function addClass(){
 
     //function to calculate the cost of call or sms bill given according to the update
     function settingsCalculation(checkedRadioSet){
+        // console.log("Inside cal")
         if (checkedRadioSet === 'call'){
             if ((overallTotal + parseFloat(billObjectCall)) <= billObjecCritical){ //I am stoping it not to add if the overal total is beyonf the critital value
-                console.log('inside call')
                 initCallsTotal += parseFloat(billObjectCall)
                 overallTotal += parseFloat(billObjectCall)
             } else{
-                console.log('This is over the critical value')
                 warningMes = 'This is over the critical value'
             }
         } if (checkedRadioSet === 'sms'){ //I am stoping it not to add if the overal total is beyonf the critital value
             if ((overallTotal + parseFloat(billObjectSms)) <= billObjecCritical){
-                console.log('inside sms')
                 intiSmsTotal += parseFloat(billObjectSms)
                 overallTotal += parseFloat(billObjectSms)
             } else{
-                console.log('This is over the critical value')
+                
                 warningMes = 'This is over the critical value'
             }
         }
+        // else {
+        //     console.log('None Nothing')
+        // }
     }
 
 
@@ -83,10 +80,11 @@ function warningLevel(){
         return overallTotal
     }
     var getWarningVlue = function(){
-        return billObjectWarning
+        // console.log(billObjectWarning)
+        return parseFloat(billObjectWarning)
     }
     var getCriticalVlue = function(){
-        return billObjecCritical
+        return parseFloat(billObjecCritical)
     }
     
     return {

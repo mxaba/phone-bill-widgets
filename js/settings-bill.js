@@ -1,3 +1,5 @@
+var settingsBill = seetingBillLogic()
+
 // get refences to all the settings fields
 var callTotalSettings = document.querySelector('.callTotalSettings')
 var smsTotalSettings = document.querySelector('.smsTotalSettings')
@@ -8,26 +10,24 @@ var smsAndCallSecttings = document.querySelector('.smsAndCallSecttings')
 var updateSettings = document.querySelector('.updateSettings')
 // create a variables that will keep track of all the settings
 
-// create a variables that will keep track of all three totals.
-var costOfCall = 0
-var costOfSMS = 0
-var critialCost = 0
-var costWarning = 0
-//add an event listener for when the 'Update settings' button is pressed
-var totalCall = 0
-var totalSms = 0
-var overallTotal = 0
-//add an event listener for when the add button is pressed
-updateSettings.addEventListener('click', function(){
-    var callCostSettings = document.querySelector('.callCostSettings')
-    var smsCostSettings = document.querySelector('.smsCostSettings')
-    var warningLevelSetting = document.querySelector('.warningLevelSetting')
-    var criticalLevelSetting = document.querySelector('.criticalLevelSetting')
-    costOfCall = callCostSettings.value
-    costOfSMS = smsCostSettings.value
-    critialCost = criticalLevelSetting.value
-    costWarning = warningLevelSetting.value
-    console.log(parseFloat(costOfCall))
+var getSettings = function(){
+    var callCostSettings = document.querySelector('.callCostSettings').value
+    var smsCostSettings = document.querySelector('.smsCostSettings').value
+    var warningLevelSetting = document.querySelector('.warningLevelSetting').value
+    var criticalLevelSetting = document.querySelector('.criticalLevelSetting').value
+
+    return {
+        callCostSettings: callCostSettings,
+        smsCostSettings: smsCostSettings,
+        warningLevelSettings: warningLevelSetting,
+        criticalLevelSetting: criticalLevelSetting
+    }
+}
+
+function applySettingColorClass(){
+    var overallTotal = settingsBill.getTotal()
+    var costWarning = settingsBill.getWarningVlue()
+    var critialCost = settingsBill.getCriticalVlue()
 
     if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
         if (totalSettings.classList.contains('danger')){
@@ -44,43 +44,28 @@ updateSettings.addEventListener('click', function(){
         } 
         
     }
+
+}
+
+
+//setting calculated values in the html
+function setSettings(){
+    callTotalSettings.innerHTML = settingsBill.getCostCallTotal()
+    smsTotalSettings.innerHTML = settingsBill.getCostSmsTotal()
+    totalSettings.innerHTML = 'R' + settingsBill.getTotal()
+}
+
+updateSettings.addEventListener('click', function(){
+    settingsBill.getSmsCost(document.querySelector('.smsCostSettings').value)
+    settingsBill.getCallCost(document.querySelector('.callCostSettings').value)
+    settingsBill.getCriticalCost(document.querySelector('.criticalLevelSetting').value)
+    settingsBill.getWarningCost(document.querySelector('.warningLevelSetting').value)
+    applySettingColorClass()
 })
 
-// function radioBillSettingTotal
-//in the event listener get the value from the billItemTypeRadio radio buttons
-// * add the appropriate value to the call / sms total
-// * add the appropriate value to the overall total
-// * add nothing for invalid values that is not 'call' or 'sms'.
-// * display the latest total on the screen.
-// * check the value thresholds and display the total value in the right color.
 smsAndCallSecttings.addEventListener('click', function(){
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-    if (checkedRadioBtn){
-        
-        if (checkedRadioBtn.value === 'callSet'){
-            if ((overallTotal + parseFloat(costOfCall)) <= parseFloat(critialCost)){
-                totalCall += parseFloat(costOfCall)
-                overallTotal += parseFloat(costOfCall)
-            }
-        } if (checkedRadioBtn.value === 'smsSet'){
-            if ((overallTotal + parseFloat(costOfSMS)) <= parseFloat(critialCost)){
-                totalSms += parseFloat(costOfSMS)
-                overallTotal += parseFloat(costOfSMS)
-            }
-        }
-        console.log(overallTotal)
-        callTotalSettings.innerHTML = totalCall.toFixed(2)
-        smsTotalSettings.innerHTML = totalSms.toFixed(2)
-        totalSettings.innerHTML = 'R' + overallTotal.toFixed(2)
-
-        if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
-            if (totalSettings.classList.contains('danger')){
-                totalSettings.classList.remove('danger')
-            } totalSettings.classList.add("warning")
-        } else if (overallTotal >= parseFloat(critialCost)){
-            if (totalSettings.classList.contains('warning')){
-                totalSettings.classList.remove('warning')
-            } totalSettings.classList.add('danger')
-        }
-    }
+    settingsBill.settingsCalculation(checkedRadioBtn.value)
+    setSettings()
+    applySettingColorClass()
 })
