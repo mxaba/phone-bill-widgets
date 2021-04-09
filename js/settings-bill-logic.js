@@ -29,10 +29,11 @@ var seetingBillLogic = function(){
 function addClass(){
     if(criticalLevel()){
         return "danger"
-       }
-       if(warningLevel()){
-           return "warning"
-       }
+    } if(warningLevel()){
+        return "warning"
+    } if (normalLevel()){
+        return "normal"
+    }
 }
 
     //function to calculate the cost of call or sms bill given according to the update
@@ -67,6 +68,10 @@ function criticalLevel(){
 function warningLevel(){
   return  overallTotal >= billObjectWarning && overallTotal < billObjecCritical
 }
+
+function normalLevel(){
+    return  overallTotal < billObjectWarning || overallTotal < billObjecCritical
+  }
     
 
     //Functions to return the values 

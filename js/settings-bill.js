@@ -10,35 +10,35 @@ var smsAndCallSecttings = document.querySelector('.smsAndCallSecttings')
 var updateSettings = document.querySelector('.updateSettings')
 // create a variables that will keep track of all the settings
 
+
+
 var getSettings = function(){
     var callCostSettings = document.querySelector('.callCostSettings').value
     var smsCostSettings = document.querySelector('.smsCostSettings').value
     var warningLevelSetting = document.querySelector('.warningLevelSetting').value
     var criticalLevelSetting = document.querySelector('.criticalLevelSetting').value
 
-    return {
-        callCostSettings: callCostSettings,
-        smsCostSettings: smsCostSettings,
-        warningLevelSettings: warningLevelSetting,
-        criticalLevelSetting: criticalLevelSetting
-    }
+    settingsBill.getCallCost(callCostSettings)
+    settingsBill.getSmsCost(smsCostSettings)
+    settingsBill.getWarningCost(warningLevelSetting)
+    settingsBill.getCriticalCost(criticalLevelSetting)
 }
 
 function applySettingColorClass(){
-    var overallTotal = settingsBill.getTotal()
-    var costWarning = settingsBill.getWarningVlue()
-    var critialCost = settingsBill.getCriticalVlue()
+    // var overallTotal = settingsBill.getTotal()
+    // var costWarning = settingsBill.getWarningVlue()
+    // var critialCost = settingsBill.getCriticalVlue()
 
-    if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
+    if (settingsBill.addClass() === 'warning'){
         if (totalSettings.classList.contains('danger')){
             totalSettings.classList.remove('danger')
         } totalSettings.classList.add("warning")
-    } else if (overallTotal >= parseFloat(critialCost)){
+    } else if (settingsBill.addClass() === 'danger'){
         if (totalSettings.classList.contains('warning')){
             totalSettings.classList.remove('warning')
         } totalSettings.classList.add('danger')
     } 
-    else if (overallTotal < parseFloat(costWarning)){
+    else if (settingsBill.addClass() === 'normal'){
         if (totalSettings.classList.contains('warning' || 'danger')){
             totalSettings.classList.remove('warning', 'danger')
         } 
@@ -56,10 +56,7 @@ function setSettings(){
 }
 
 updateSettings.addEventListener('click', function(){
-    settingsBill.getSmsCost(document.querySelector('.smsCostSettings').value)
-    settingsBill.getCallCost(document.querySelector('.callCostSettings').value)
-    settingsBill.getCriticalCost(document.querySelector('.criticalLevelSetting').value)
-    settingsBill.getWarningCost(document.querySelector('.warningLevelSetting').value)
+    getSettings()
     applySettingColorClass()
 })
 
