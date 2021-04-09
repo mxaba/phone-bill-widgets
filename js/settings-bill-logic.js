@@ -25,16 +25,16 @@ var seetingBillLogic = function(){
     var getCriticalCost = function(CritialCostSetting){
         billObjecCritical = parseFloat(CritialCostSetting).toFixed(2)
     }
-
-function addClass(){
-    if(criticalLevel()){
-        return "danger"
-    } if(warningLevel()){
-        return "warning"
-    } if (normalLevel()){
-        return "normal"
+    
+    function addClass(){
+        if(criticalLevel()){
+            return "danger"
+        } if(warningLevel()){
+            return "warning"
+        } if (normalLevel()){
+            return "normal"
+        }
     }
-}
 
     //function to calculate the cost of call or sms bill given according to the update
     function settingsCalculation(checkedRadioSet){

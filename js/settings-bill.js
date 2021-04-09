@@ -28,19 +28,16 @@ function applySettingColorClass(){
     if (settingsBill.addClass() === 'warning'){
         if (totalSettings.classList.contains('danger')){
             totalSettings.classList.remove('danger')
-        } totalSettings.classList.add("warning")
+        } totalSettings.classList.add(settingsBill.addClass())
     } else if (settingsBill.addClass() === 'danger'){
         if (totalSettings.classList.contains('warning')){
             totalSettings.classList.remove('warning')
-        } totalSettings.classList.add('danger')
-    } 
-    else if (settingsBill.addClass() === 'normal'){
+        } totalSettings.classList.add(settingsBill.addClass())
+    } else if (settingsBill.addClass() === 'normal'){
         if (totalSettings.classList.contains('warning' || 'danger')){
             totalSettings.classList.remove('warning', 'danger')
-        } 
-        
+        }
     }
-
 }
 
 
