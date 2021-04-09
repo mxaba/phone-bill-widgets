@@ -55,9 +55,6 @@ function addClass(){
                 warningMes = 'This is over the critical value'
             }
         }
-        // else {
-        //     console.log('None Nothing')
-        // }
     }
 
 

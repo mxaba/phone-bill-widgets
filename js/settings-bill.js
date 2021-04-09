@@ -25,10 +25,6 @@ var getSettings = function(){
 }
 
 function applySettingColorClass(){
-    // var overallTotal = settingsBill.getTotal()
-    // var costWarning = settingsBill.getWarningVlue()
-    // var critialCost = settingsBill.getCriticalVlue()
-
     if (settingsBill.addClass() === 'warning'){
         if (totalSettings.classList.contains('danger')){
             totalSettings.classList.remove('danger')
