@@ -25,15 +25,19 @@ var getSettings = function(){
 }
 
 function applySettingColorClass(){
-    if (settingsBill.addClass() === 'warning'){
+    var critialCost = settingsBill.getCriticalVlue()
+    var costWarning = settingsBill.getWarningVlue()
+    var overallTotal = settingsBill.getTotal()
+
+    if (overallTotal >= parseFloat(costWarning) && overallTotal < parseFloat(critialCost)){
         if (totalSettings.classList.contains('danger')){
             totalSettings.classList.remove('danger')
         } totalSettings.classList.add(settingsBill.addClass())
-    } else if (settingsBill.addClass() === 'danger'){
+    } else if (overallTotal >= parseFloat(critialCost)){
         if (totalSettings.classList.contains('warning')){
             totalSettings.classList.remove('warning')
         } totalSettings.classList.add(settingsBill.addClass())
-    } else if (settingsBill.addClass() === 'normal'){
+    } else if (overallTotal < parseFloat(costWarning) || overallTotal < parseFloat(critialCost)){
         if (totalSettings.classList.contains('warning' || 'danger')){
             totalSettings.classList.remove('warning', 'danger')
         }
