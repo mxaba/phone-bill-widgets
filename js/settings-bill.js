@@ -34,9 +34,9 @@ function applySettingColorClass(){
 
 //setting calculated values in the html
 function setSettings(){
-    callTotalSettings.innerHTML = settingsBill.getCostCallTotal()
-    smsTotalSettings.innerHTML = settingsBill.getCostSmsTotal()
-    totalSettings.innerHTML = 'R' + settingsBill.getTotal()
+    callTotalSettings.innerHTML = settingsBill.getCostCallTotal().toFixed(2)
+    smsTotalSettings.innerHTML = settingsBill.getCostSmsTotal().toFixed(2)
+    totalSettings.innerHTML = 'R' + settingsBill.getTotal().toFixed(2)
 }
 
 updateSettings.addEventListener('click', function(){
