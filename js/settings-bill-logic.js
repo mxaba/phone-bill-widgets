@@ -31,8 +31,6 @@ var seetingBillLogic = function(){
             return "danger"
         } if(warningLevel()){
             return "warning"
-        } if (normalLevel()){
-            return "normal"
         }
     }
 
@@ -66,10 +64,6 @@ function warningLevel(){
   return  overallTotal >= billObjectWarning && overallTotal < billObjecCritical
 }
 
-function normalLevel(){
-    return  overallTotal < billObjectWarning || overallTotal < billObjecCritical
-  }
-    
 
     //Functions to return the values 
     var getCostSmsTotal = function(){
