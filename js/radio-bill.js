@@ -1,4 +1,3 @@
-
 var radioAddBtn = document.querySelector('.radioBillAddBtn')
 var callTotalTwo = document.querySelector('.callTotalTwo')
 var smsTotalTwo = document.querySelector('.smsTotalTwo')
@@ -7,9 +6,19 @@ var totalTwo = document.querySelector('.totalTwo')
 var radioBill = radioBillLogic() 
 
 function setRadioTotals(){
-    callTotalTwo.innerHTML = radioBill.getTotals().call
-    smsTotalTwo.innerHTML = radioBill.getTotals().sms
-    totalTwo.innerHTML = 'R' + radioBill.getTotals().totalOfSmsCall
+
+    var userTemplate = document.querySelector('.userTemplate').innerHTML
+    var totalEle = Handlebars.compile(userTemplate)
+
+    callTotalTwo.innerHTML = totalEle({
+         totalsCallBills: radioBill.getTotals().call
+     })
+    smsTotalTwo.innerHTML = totalEle({
+        totalsSmsBills: radioBill.getTotals().sms
+    })
+    totalTwo.innerHTML = 'R' + totalEle({
+        totalsBills: radioBill.getTotals().totalOfSmsCall
+    })
 }
 
 function getRadioBtnElement(){
