@@ -1,12 +1,8 @@
+document.addEventListener('DOMContentLoaded', function(){
 // get a reference to the textbox where the bill type is to be entered
-
 var addToBillBtn = document.querySelector('.addToBillBtn')
 
-
 //create a variable that will keep track of the total bill
-var smsCallTotal = 0
-var callTotal1 = 0
-var smsTotal1 = 0
 
 var textBill = textBillLogic()
 
@@ -21,10 +17,15 @@ function setTextTotals(){
     var callTotalOne = document.querySelector('.callTotalOne')
     var smsTotalOne = document.querySelector('.smsTotalOne')
     var totalOne = document.querySelector('.totalOne')
+    var userTemplate = document.querySelector('.userTemplate').innerHTML
+
+    var totalEle = Handlebars.compile(userTemplate)
 
     callTotalOne.innerHTML = textBill.get().call
     smsTotalOne.innerHTML = textBill.get().sms
-    totalOne.innerHTML = 'R' + textBill.get().total
+    totalsBills = totalEle({totalsBills: textBill.get().total})
+    console.log(typeof totalsBills)
+    totalOne.innerHTML = 'R' + totalEle({totalsBills: textBill.get().total})
 }
 
 
@@ -56,3 +57,4 @@ addToBillBtn.addEventListener('click', function(){
 // * add the appropriate value to the running total
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen
+})
